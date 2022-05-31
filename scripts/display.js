@@ -9,7 +9,7 @@ export function displayResults (recipeIds) {
     resultSection.innerHTML = ''
     noResultSpan.classList.add('hidden')
     const rawResult = []
-
+    
     if (recipeIds.length > 0) {
         recipeIds.forEach(id => rawResult.push(recipes.filter(recipe => recipe.id === id)))
         const flatResult = rawResult.flat()

@@ -9,8 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet"> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="style/style.css" rel="stylesheet">
+    <link href="assets/lpp_favicon_32.png" rel="icon" type="image/png">
     <script src="https://kit.fontawesome.com/52b9d34509.js" crossorigin="anonymous"></script>
-    <title>Les Petits plats</title>
+    <title>Les Petits Plats</title>
 </head>
 <body>
     <header>
@@ -20,9 +21,107 @@
         <section id="search-section">
             <input type="text" id="searchbar" placeholder="Rechercher un ingrédient ...">
             <div id="search-tags"></div>
+
+            <div id="search_combobox-container">
+
+                <div
+                id="ingredients-combobox"
+                class="combobox"
+                data-type="ingredients"
+                >
+                    <div 
+                    id="ingredients-controls"
+                    class="combobox-controls"
+                    data-type="ingredients"
+                    >
+                        <input 
+                        id="ingredients-input"
+                        class="combobox-input"
+                        data-type="ingredients"
+                        placeholder="Ingrédients"
+                        type="text" 
+                        size="10"
+                        >
+                        <button 
+                        id="ingredients-btn"
+                        class="combobox-btn"
+                        data-type="ingredients">
+                        </button>
+                    </div>
+                    <ul 
+                    class="combobox-list hidden"
+                    id="ingredients-list"
+                    data-type="ingredients">
+                    </ul>
+                </div>
+                
+                <div 
+                id="appliances-combobox"
+                class="combobox"
+                data-type="appliances"
+                >
+                    <div
+                    id="appliances-controls"
+                    class="combobox-controls"
+                    data-type="appliances"
+                    >
+                        <input
+                        id="appliances-input"
+                        class="combobox-input"
+                        data-type="appliances"
+                        type="text"
+                        size="10"
+                        placeholder="Appareil"
+                        >
+                        <button
+                        class="combobox-btn"
+                        id="appliances-btn"
+                        data-type="appliances">
+                        </button>
+                    </div>
+                    <ul
+                    class="combobox-list hidden"
+                    id="appliances-list"
+                    data-type="appliances">
+                    </ul>
+                </div>
+                
+                <div
+                class="combobox"
+                id="ustensils-combobox"
+                data-type="ustensils"
+                >
+                    <div
+                    class="combobox-controls"
+                    id="ustensils-controls"
+                    data-type="ustensils"
+                    >
+                        <input
+                        type="text"
+                        class="combobox-input"
+                        id="ustensils-input"
+                        placeholder="Ustensiles"
+                        size="10"
+                        data-type="ustensils">
+                        
+                        <button
+                        class="combobox-btn"
+                        id="ustensils-btn"
+                        data-type="ustensils">
+                        </button>
+                    </div>
+                    <ul
+                    class="combobox-list hidden"
+                    id="ustensils-list"
+                    data-type="ustensils">
+                    </ul>
+                </div>
+            </div>
         </section>
+        <span id="no-result" class="hidden">Aucune recette ne correspond à votre critère... vous pouvez chercher "tarte aux pommes", "poisson", etc.</span>
         <section id="result-section"></section>
     </main>
+
     <template id="template_recipe">
         <article class="recipe">
             <div class="recipe-thumbnail"></div>
@@ -34,9 +133,15 @@
             </div>
         </article>
     </template>
+    <template id="template_tag">
+        <article class="tag">
+            <h3 class="tag-title"></h3>
+            <button class="tag-btn"></button>
+        </article>
+    </template>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="scripts/index.js" type="module"></script>
+    <script src="./scripts/index.js" type="module"></script>
     
     
 </body>
