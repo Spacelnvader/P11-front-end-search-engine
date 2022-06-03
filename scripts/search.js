@@ -40,20 +40,18 @@ function search (searchParameters) {
     //     }
     // })
     console.log(searchParameters.ingredients)
-    for (let i = 0; i < recipes.length; i++) {
-        if (recipes[i].name.toLowerCase().includes(searchParameters.textSearch.toLowerCase())
-            || recipes[i].description.toLowerCase().includes(searchParameters.textSearch.toLowerCase())) {
-            idsFound.push(recipes[i].id)
-        }
-        else {
-            for (let j = 0; j < recipes[i].ingredients.length; j++) {
-                if (recipes[i].ingredients[j].ingredient.toLowerCase().includes(searchParameters.textSearch.toLowerCase())) {
-                    idsFound.push(recipes[i].id)
-                }
-            }
-            
-        }
-    }
+  
+    recipes.forEach(recipe => {
+        if (recipe.name.toLowerCase().includes(searchParameters.textSearch.toLowerCase())
+            || recipe.description.toLowerCase().includes(searchParameters.textSearch.toLowerCase())
+            || recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(searchParameters.textSearch.toLowerCase()))) {
+
+            idsFound.push(recipe.id)
+        }})
+
+
+
+
     return idsFound
 }
 
