@@ -24,23 +24,41 @@ function search (searchParameters) {
 
     let idsFound = []
     // Bind the search functions to an object key
-    Object.entries(activeSearch).forEach(([key, value]) => {
-        const searchResults = {
-            ingredients: () => ingredientsSearch(idsFound),
-            appliances: () => appliancesSearch(idsFound),
-            ustensils: () => ustensilsSearch(idsFound),
-            text: () => keywordSearch(idsFound)
+    // Object.entries(activeSearch).forEach(([key, value]) => {
+    //     const searchResults = {
+    //         ingredients: () => ingredientsSearch(idsFound),
+    //         appliances: () => appliancesSearch(idsFound),
+    //         ustensils: () => ustensilsSearch(idsFound),
+    //         text: () => keywordSearch(idsFound)
+    //     }
+    //     if (value) {
+    //         // For each existing search parameter, calls the related search function.
+    //         const currentBatch = []
+    //         currentBatch.push(searchResults[`${key}`]())
+    //         if (currentBatch.length === 0) return []
+    //         else idsFound = currentBatch.flat()
+    //     }
+    // })
+    console.log(searchParameters.ingredients)
+    for (let i = 0; i < recipes.length; i++) {
+        if (recipes[i].name.toLowerCase().includes(searchParameters.textSearch.toLowerCase())
+            || recipes[i].description.toLowerCase().includes(searchParameters.textSearch.toLowerCase())) {
+            idsFound.push(recipes[i].id)
         }
-        if (value) {
-            // For each existing search parameter, calls the related search function.
-            const currentBatch = []
-            currentBatch.push(searchResults[`${key}`]())
-            if (currentBatch.length === 0) return []
-            else idsFound = currentBatch.flat()
+        else {
+            for (let j = 0; j < recipes[i].ingredients.length; j++) {
+                if (recipes[i].ingredients[j].ingredient.toLowerCase().includes(searchParameters.textSearch.toLowerCase())) {
+                    idsFound.push(recipes[i].id)
+                }
+            }
+            
         }
-    })
+    }
     return idsFound
 }
+
+
+
 
 function getRecipesById (ids) {
     const result = []

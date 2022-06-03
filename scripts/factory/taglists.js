@@ -2,6 +2,7 @@ function onlyUnique (value, index, self) {
     return self.indexOf(value) === index
 }
 
+// on push dans un tableau tous les ingredients de notre fichier data et on les trie par ordre alphabétique
 function getIngredients (recipes) {
     const totalIngredients = []
     recipes.forEach(recipe => {
