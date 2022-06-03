@@ -47,7 +47,7 @@ function search (searchParameters) {
         }
         else {
             for (let j = 0; j < recipes[i].ingredients.length; j++) {
-                if (recipes[i].ingredients[j].ingredient.toLowerCase().includes(searchParameters.textSearch.toLowerCase())) {
+                if (recipes[i].ingredients[j].ingredient.toLowerCase().includes(searchParameters.textSearch.toLowerCase()) && !idsFound.includes(recipes[i].id)) {
                     idsFound.push(recipes[i].id)
                 }
             }
