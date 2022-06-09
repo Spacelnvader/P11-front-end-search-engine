@@ -607,7 +607,7 @@ export const recipes = [
             }
         ],
         "time": 15,
-        "description":"Coupez les fraises en morceaux, découpez la chaire de la pastèque en retirant les pépins. Mettre le tout dans le blender. Ajouter un cuillière à soupe de juste de citron ainsi que les glaçons. Ajoutez quelques fueilles de menthe pour plus de fraicheur. Mixez le tout. Servir et déguster.",
+        "description":"Coupez les fraises en morceaux, découpez la chaire de la pastèque en retirant les pépins. Mettre le tout dans le blender. Ajouter un cuillière à soupe de juste de citron ainsi que les glaçons. Ajoutez quelques feuilles de menthe pour plus de fraicheur. Mixez le tout. Servir et déguster.",
         "appliance": "Blender",
         "ustensils":["verres", "couteau", "presse citron"]
     },
@@ -1121,7 +1121,7 @@ export const recipes = [
             }
         ],
         "time": 20,
-        "description":"Beurrer les tranches de pain, ajouter entre 2 tranches de pain de mie 1 tranche d'émental, une de blanc de dinde, et une autre d'emmental. Dans un récipient, mélanger le gruyère rappé avec le lait et la noix de muscade. Mettre sur les croque monsieux. Placer au four durnat 10 minutes.",
+        "description":"Beurrer les tranches de pain, ajouter entre 2 tranches de pain de mie 1 tranche d'émental, une de blanc de dinde, et une autre d'emmental. Dans un récipient, mélanger le gruyère rappé avec le lait et la noix de muscade. Mettre sur les croque monsieux. Placer au four durant 10 minutes.",
         "appliance": "Four",
         "ustensils":["râpe à fromage", "cuillère à Soupe", "couteau"]
     },

@@ -23,7 +23,7 @@ function search (searchParameters) {
     }
 
     let idsFound = []
-    // Bind the search functions to an object key
+    //Bind the search functions to an object key
     // Object.entries(activeSearch).forEach(([key, value]) => {
     //     const searchResults = {
     //         ingredients: () => ingredientsSearch(idsFound),
@@ -39,7 +39,7 @@ function search (searchParameters) {
     //         else idsFound = currentBatch.flat()
     //     }
     // })
-    console.log(searchParameters.ingredients)
+    //console.log(searchParameters.ingredients)
     for (let i = 0; i < recipes.length; i++) {
         if (recipes[i].name.toLowerCase().includes(searchParameters.textSearch.toLowerCase())
             || recipes[i].description.toLowerCase().includes(searchParameters.textSearch.toLowerCase())) {
