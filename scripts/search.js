@@ -39,7 +39,7 @@ function search (searchParameters) {
     //         else idsFound = currentBatch.flat()
     //     }
     // })
-    //console.log(searchParameters.ingredients)
+    //console.log(searchParameters.ustensils)
     for (let i = 0; i < recipes.length; i++) {
         if (recipes[i].name.toLowerCase().includes(searchParameters.textSearch.toLowerCase())
             || recipes[i].description.toLowerCase().includes(searchParameters.textSearch.toLowerCase())) {
@@ -54,6 +54,23 @@ function search (searchParameters) {
             
         }
     }
+    // fonction pour filtrer les résultats par ustensils
+    if (searchParameters.ustensils.length > 0) {
+        idsFound = idsFound.filter(id => {
+            for (let i = 0; i < searchParameters.ustensils.length; i++) {
+                if (recipes[id - 1].ustensils.includes(searchParameters.ustensils[i])) {
+                    return true
+                }
+            }
+            return false
+        })
+    }
+    
+    
+
+
+    
+    
     return idsFound
 }
 
