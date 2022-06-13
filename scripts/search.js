@@ -40,7 +40,7 @@ function search (searchParameters) {
     //     }
     // })
     console.log(searchParameters.ingredients)
-  
+
     recipes.forEach(recipe => {
         if (recipe.name.toLowerCase().includes(searchParameters.textSearch.toLowerCase())
             || recipe.description.toLowerCase().includes(searchParameters.textSearch.toLowerCase())
@@ -49,7 +49,9 @@ function search (searchParameters) {
             idsFound.push(recipe.id)
         }})
 
-
+    if (activeSearch.ingredients) idsFound = ingredientsSearch(idsFound)    // If the ingredients search is active, calls the ingredientsSearch function.
+    if (activeSearch.appliances) idsFound = appliancesSearch(idsFound)    // If the appliances search is active, calls the appliancesSearch function.
+    if (activeSearch.ustensils) idsFound = ustensilsSearch(idsFound)    // If the ustensils search is active, calls the ustensilsSearch function. 
 
 
     return idsFound
@@ -116,23 +118,23 @@ function ingredientsSearch (ids = []) {
     return filterByOccurence(singleTagMatchIds, tags.length)
 }
 
-function keywordSearch (ids) {
-    let matchR = []
-    const matchIds = []
-    const keyword = searchParameters.textSearch
-    let recipesToParse
+// function keywordSearch (ids) {
+//     let matchR = []
+//     const matchIds = []
+//     const keyword = searchParameters.textSearch
+//     let recipesToParse
 
-    if (ids.length === 0) recipesToParse = recipes
-    else recipesToParse = getRecipesById(ids)
+//     if (ids.length === 0) recipesToParse = recipes
+//     else recipesToParse = getRecipesById(ids)
 
-    matchR = matchR.concat(recipesToParse.filter(recipe => recipe.name.includes(keyword)))
-    matchR = matchR.concat(recipesToParse.filter(recipe => recipe.description.includes(keyword)))
-    matchR = matchR.concat(recipesToParse.filter(recipe => hasIngredient(recipe, [keyword])))
+//     matchR = matchR.concat(recipesToParse.filter(recipe => recipe.name.includes(keyword)))
+//     matchR = matchR.concat(recipesToParse.filter(recipe => recipe.description.includes(keyword)))
+//     matchR = matchR.concat(recipesToParse.filter(recipe => hasIngredient(recipe, [keyword])))
 
-    matchR.forEach(recipe => matchIds.push(recipe.id))
+//     matchR.forEach(recipe => matchIds.push(recipe.id))
 
-    return matchIds.filter((value, index, filteredRecipes) => filteredRecipes.indexOf(value) === index)
-}
+//     return matchIds.filter((value, index, filteredRecipes) => filteredRecipes.indexOf(value) === index)
+// }
 
 function filterByOccurence (array, idOccurence) {
     const idCount = {}
