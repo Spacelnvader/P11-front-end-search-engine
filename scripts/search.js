@@ -39,7 +39,7 @@ function search (searchParameters) {
     //         else idsFound = currentBatch.flat()
     //     }
     // })
-    console.log(searchParameters.ingredients)
+    // console.log(searchParameters.ingredients)
 
     recipes.forEach(recipe => {
         if (recipe.name.toLowerCase().includes(searchParameters.textSearch.toLowerCase())
