@@ -71,7 +71,7 @@ function getRecipesById (ids) {
 
 function ustensilsSearch (ids = []) {
     let singleTagMatchR = []
-    const singleTagMatchIds = []
+    let singleTagMatchIds = []
     const tags = searchParameters.ustensils
     let recipesToParse
     // If this is the first search function called, iterates over the whole recipes object instead of the idsFound argument.
@@ -87,7 +87,7 @@ function ustensilsSearch (ids = []) {
 
 function appliancesSearch (ids = []) {
     let singleTagMatchR = []
-    const singleTagMatchIds = []
+    let singleTagMatchIds = []
     const tags = searchParameters.appliances
     let recipesToParse
 
@@ -105,7 +105,7 @@ function appliancesSearch (ids = []) {
 
 function ingredientsSearch (ids = []) {
     let singleTagMatchR = []
-    const singleTagMatchIds = []
+    let singleTagMatchIds = []
     const tags = searchParameters.ingredients
     let recipesToParse
 
