@@ -328,6 +328,7 @@ main {
     opacity: 0.5;
 }
 
+
 .combobox-list {
     display: grid;
     width: 100%;
@@ -343,6 +344,13 @@ main {
     scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.1);
     scrollbar-width: thin;
 }
+
+@media screen and (max-width: 990px) {
+    .combobox-list{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
 
 .combobox-list li {
     cursor: pointer;
