@@ -2,7 +2,7 @@ function onlyUnique (value, index, self) {
     return self.indexOf(value) === index
 }
 
-// On push dans un tableau tous les ingrédients de notre fichier data et on les trie par ordre alphabétique
+// On push dans un tableau tous les ingrédients de notre fichier data et on les trie par ordre alphabétique en les transformant en minuscule
 function getIngredients (recipes) {
     const totalIngredients = []
     recipes.forEach(recipe => {
