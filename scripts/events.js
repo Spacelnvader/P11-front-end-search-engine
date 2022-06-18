@@ -84,16 +84,17 @@ function handleKeyUp () {
     }
 }
 
+// on place les toLowerCase() ici pour rendre insensible à la casse
 function handleTagKeyup (evt) {
     const currentInput = evt.target
     const category = currentInput.dataset.type
     const currentTags = [].slice.call(document.querySelectorAll(`li[data-category=${category}]`))
-    if (currentInput.value.length >= 3) {
+    if (currentInput.value.toLowerCase().length >= 3) {
         currentTags.forEach(tag => tag.classList.remove('hidden'))
-        const tagsToHide = currentTags.filter(li => !li.dataset.name.includes(currentInput.value))
+        const tagsToHide = currentTags.filter(li => !li.dataset.name.includes(currentInput.value.toLowerCase()))
         tagsToHide.forEach(tag => tag.classList.add('hidden'))
     }
-    if (currentInput.value.length < 3) {
+    if (currentInput.value.toLowerCase().length < 3) {
         currentTags.forEach(tag => tag.classList.remove('hidden'))
     }
 }
