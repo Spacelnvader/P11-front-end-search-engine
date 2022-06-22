@@ -118,24 +118,10 @@ function ingredientsSearch (ids = []) {
     return filterByOccurence(singleTagMatchIds, tags.length)
 }
 
-// function keywordSearch (ids) {
-//     let matchR = []
-//     const matchIds = []
-//     const keyword = searchParameters.textSearch
-//     let recipesToParse
 
-//     if (ids.length === 0) recipesToParse = recipes
-//     else recipesToParse = getRecipesById(ids)
-
-//     matchR = matchR.concat(recipesToParse.filter(recipe => recipe.name.includes(keyword)))
-//     matchR = matchR.concat(recipesToParse.filter(recipe => recipe.description.includes(keyword)))
-//     matchR = matchR.concat(recipesToParse.filter(recipe => hasIngredient(recipe, [keyword])))
-
-//     matchR.forEach(recipe => matchIds.push(recipe.id))
-
-//     return matchIds.filter((value, index, filteredRecipes) => filteredRecipes.indexOf(value) === index)
-// }
-
+// tableau d'id des recettes qui ont match 1 ou plusieurs tags
+// 1 ID par match donc on peut retrouver plusieurs occurences pour 1 id
+// Cette fonction retourne uniquement les recettes correspondant à tous les tags sélectionnées
 function filterByOccurence (array, idOccurence) {
     const idCount = {}
     const result = []
@@ -143,12 +129,16 @@ function filterByOccurence (array, idOccurence) {
     array.forEach(id => {
         if (idCount[id] === undefined) idCount[id] = 1
         else idCount[id] += 1
+        console.log('idCount', idCount)
     })
 
     Object.entries(idCount).forEach(([id, count]) => {
+        console.log('count', count)
+        console.log('id', id)
         if (count === idOccurence) result.push(parseInt(id))
+        
     })
-    
+    console.log('result',result)
     return result
     
 }
