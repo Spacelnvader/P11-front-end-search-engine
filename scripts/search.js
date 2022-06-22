@@ -92,7 +92,7 @@ function appliancesSearch (ids = []) {
     else recipesToParse = getRecipesById(ids)
 
     tags.forEach(tag => {
-        singleTagMatchR = singleTagMatchR.concat(recipesToParse.filter(recipe => recipe.appliance === tag))
+        singleTagMatchR = singleTagMatchR.concat(recipesToParse.filter(recipe => recipe.appliance.toLowerCase() === tag))
     })
 
     singleTagMatchR.forEach(recipe => singleTagMatchIds.push(recipe.id))
@@ -148,12 +148,13 @@ function filterByOccurence (array, idOccurence) {
     Object.entries(idCount).forEach(([id, count]) => {
         if (count === idOccurence) result.push(parseInt(id))
     })
-
+    
     return result
+    
 }
 
 function hasIngredient (recipe, tag) {
-    if (recipe.ingredients.find(object => object.ingredient.includes(tag))) return true
+    if (recipe.ingredients.find(object => object.ingredient.toLowerCase().includes(tag))) return true
     return false
 }
 
