@@ -58,20 +58,22 @@ function search (searchParameters) {
     if (activeSearch.appliances) idsFound = appliancesSearch(idsFound)    // If the appliances search is active, calls the appliancesSearch function.
     if (activeSearch.ustensils) idsFound = ustensilsSearch(idsFound)    // If the ustensils search is active, calls the ustensilsSearch function. 
 
+
     return idsFound
 }
 
 
 
-function getRecipesById (ids) {
+
+function getRecipesById(ids) {
     const result = []
     ids.forEach(id => result.push(recipes.filter(recipe => recipe.id === id)))
     return result.flat()
 }
 
-function ustensilsSearch (ids = []) {
+function ustensilsSearch(ids = []) {
     let singleTagMatchR = []
-    let singleTagMatchIds = []
+    const singleTagMatchIds = []
     const tags = searchParameters.ustensils
     let recipesToParse
     // If this is the first search function called, iterates over the whole recipes object instead of the idsFound argument.
@@ -85,9 +87,9 @@ function ustensilsSearch (ids = []) {
     return filterByOccurence(singleTagMatchIds, tags.length)
 }
 
-function appliancesSearch (ids = []) {
+function appliancesSearch(ids = []) {
     let singleTagMatchR = []
-    let singleTagMatchIds = []
+    const singleTagMatchIds = []
     const tags = searchParameters.appliances
     let recipesToParse
 
@@ -95,7 +97,7 @@ function appliancesSearch (ids = []) {
     else recipesToParse = getRecipesById(ids)
 
     tags.forEach(tag => {
-        singleTagMatchR = singleTagMatchR.concat(recipesToParse.filter(recipe => recipe.appliance === tag))
+        singleTagMatchR = singleTagMatchR.concat(recipesToParse.filter(recipe => recipe.appliance.toLowerCase() === tag))
     })
 
     singleTagMatchR.forEach(recipe => singleTagMatchIds.push(recipe.id))
@@ -103,9 +105,9 @@ function appliancesSearch (ids = []) {
     return filterByOccurence(singleTagMatchIds, tags.length)
 }
 
-function ingredientsSearch (ids = []) {
+function ingredientsSearch(ids = []) {
     let singleTagMatchR = []
-    let singleTagMatchIds = []
+    const singleTagMatchIds = []
     const tags = searchParameters.ingredients
     let recipesToParse
 
@@ -121,29 +123,16 @@ function ingredientsSearch (ids = []) {
     return filterByOccurence(singleTagMatchIds, tags.length)
 }
 
-// function keywordSearch (ids) {
-//     let matchR = []
-//     const matchIds = []
-//     const keyword = searchParameters.textSearch
-//     let recipesToParse
 
-//     if (ids.length === 0) recipesToParse = recipes
-//     else recipesToParse = getRecipesById(ids)
+// tableau d'id des recettes qui ont match 1 ou plusieurs tags
+// 1 ID par match donc on peut retrouver plusieurs occurences pour 1 id
+// Cette fonction retourne uniquement les recettes correspondant à tous les tags sélectionnées
 
-//     matchR = matchR.concat(recipesToParse.filter(recipe => recipe.name.includes(keyword)))
-//     matchR = matchR.concat(recipesToParse.filter(recipe => recipe.description.includes(keyword)))
-//     matchR = matchR.concat(recipesToParse.filter(recipe => hasIngredient(recipe, [keyword])))
-
-//     matchR.forEach(recipe => matchIds.push(recipe.id))
-
-//     return matchIds.filter((value, index, filteredRecipes) => filteredRecipes.indexOf(value) === index)
-// }
-
-function filterByOccurence (array, idOccurence) {
+function filterByOccurence(arrayOfMatchingIds, idOccurence) {
     const idCount = {}
     const result = []
 
-    array.forEach(id => {
+    arrayOfMatchingIds.forEach(id => {
         if (idCount[id] === undefined) idCount[id] = 1
         else idCount[id] += 1
     })
@@ -153,10 +142,11 @@ function filterByOccurence (array, idOccurence) {
     })
 
     return result
+
 }
 
-function hasIngredient (recipe, tag) {
-    if (recipe.ingredients.find(object => object.ingredient.includes(tag))) return true
+function hasIngredient(recipe, tag) {
+    if (recipe.ingredients.find(object => object.ingredient.toLowerCase().includes(tag))) return true
     return false
 }
 
